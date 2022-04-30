@@ -27,7 +27,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: task-connector-action
-        uses: Green-Hub-Tools/task-connector@0.0.3
+        uses: Green-Hub-Tools/task-connector@0.0.4
         env:
           SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
           SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
