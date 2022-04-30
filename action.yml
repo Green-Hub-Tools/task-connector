@@ -1,0 +1,9 @@
+name: 'task-connector-action'
+author: 'Green Hub Tools <contact@ghubtools.io>'
+description: 'GitHub Action for puppet-lint'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'share-2'
+  color: 'orange'
