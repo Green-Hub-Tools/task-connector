@@ -13,7 +13,6 @@ LABEL "com.github.actions.color"="orange"
 LABEL "maintainer"="Green Hub Tools <contact@ghubtools.io>"
 
 RUN apk --no-cache add curl jq wget bash
-RUN gem install puppet-lint --no-document
 
 COPY entrypoint.sh /entrypoint.sh
 RUN ["chmod", "+x", "/entrypoint.sh"]
