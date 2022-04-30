@@ -3,7 +3,22 @@ name: Test Build
 on:
   push:
     branches: [ testing ]
+  pull_request:
+    types: [opened, reopened, closed, review_requested]
+    branches: [ testing ]
+  pull_request_review:
+    types: [submitted]
+    branches: [ testing ]
   workflow_dispatch:
+
+env:
+  message: ${{ github.event.pull_request.title }}
+  state: ${{ github.event.pull_request.state }}
+  pull_number: ${{ github.event.pull_request.number }}
+  requested_reviewers: ${{ toJson(github.event.pull_request.requested_reviewers) }}
+  creator: ${{ github.event.pull_request.user.login }}
+  repo_name: ${{ github.event.repository.full_name }}
+  base_branch_name: ${{ github.event.pull_request.base.ref }}
 jobs:
   build:
     name: Test
@@ -12,4 +27,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: task-connector-action
-        uses: Green-Hub-Tools/task-connector@0.0.2
+        uses: Green-Hub-Tools/task-connector@0.0.3
+        env:
+          SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
+          SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
+          SERVER_TASK_REST_PREFIXE_URL: ${{ secrets.SERVER_TASK_REST_PREFIXE_URL }}
+          SERVER_GAMGH_CONNECTOR_REST_URL: ${{ secrets.SERVER_GAMGH_CONNECTOR_REST_URL }}
